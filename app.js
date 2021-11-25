@@ -18,8 +18,13 @@ if (args.includes('-l')) {
 } else if (args.includes('-a') ){
     const newTodos = new Todos();
     let str=process.argv.slice(3);
-    const newTodo = new Todo(str);
-    newTodos.addTodos(newTodo);
+    if (str.length==0) {
+        console.log('Nem lehetséges új feladat hozzáadása: nincs megadva feladat');
+    }else{
+        const newTodo = new Todo(str);
+        newTodos.addTodos(newTodo);
+    }
+    
     
 }
 else {
