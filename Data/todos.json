@@ -1,5 +1,14 @@
 [
-    {"todo":"Kutyát sétáltatni"},
-    {"todo":"Tejet venni"},
-    {"todo":"Megcsinálni a leckét"}
+    {
+        "todo": "Kutyát sétáltatni"
+    },
+    {
+        "todo": "Tejet venni"
+    },
+    {
+        "todo": "Megcsinálni a leckét"
+    },
+    {
+        "todo": "megetetni,a,papagájt"
+    }
 ]

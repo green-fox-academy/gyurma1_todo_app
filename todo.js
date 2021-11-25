@@ -1,12 +1,13 @@
 'use strict'
 import fs from 'fs';
 import minimist from 'minimist';
+import { stringify } from 'querystring';
 
 
 export class Todo{
-#todo;
+todo="";
 constructor(todo){
-this.#todo=todo;
+this.todo=String(todo);
 
 }
 

@@ -15,6 +15,12 @@ if (args.includes('-l')) {
     //file beolv
     //json parsolas--rawtodolist
     //rawtodolist---todolist=[Todo{},Todo{}]
+} else if (args.includes('-a') ){
+    const newTodos = new Todos();
+    let str=process.argv.slice(3);
+    const newTodo = new Todo(str);
+    newTodos.addTodos(newTodo);
+    
 }
 else {
     console.log(`Parancssori Todo applikáció
