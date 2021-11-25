@@ -56,7 +56,7 @@ export class Todos {
                 fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
                     if (err) {
                         console.log(`Error writing file: ${err}`);
-                    }else{
+                    } else {
                         console.log('New todo wrote.')
                     }
                 });
@@ -64,13 +64,32 @@ export class Todos {
 
         });
     }
-    // let fileContent;
-    // try {
-    //   fileContent = fs.readFileSync('./Data/todos.json', 'utf-8');
-    //   this.#arrTodos=fileContent;
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    removeTodos(num) {
+        // read the file
+        fs.readFile('./Data/todos.json', 'utf8', (err, data) => {
+
+            if (err) {
+                console.log(`Error reading file from disk: ${err}`);
+            } else {
+
+                // parse JSON string to JSON object
+                const databases = JSON.parse(data);
+
+                // delete a record;
+                databases.splice(num,1);
+                console.log(databases);
+                // write new data back to the file
+                fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
+                    if (err) {
+                        console.log(`Error writing file: ${err}`);
+                    } else {
+                        console.log(`Az ${num}számú elem törölve lett.`)
+                    }
+                });
+            }
+
+        });
+    }
 
 
 }

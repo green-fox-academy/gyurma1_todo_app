@@ -26,6 +26,10 @@ if (args.includes('-l')) {
     }
     
     
+}else if (args.includes('-r')) {
+    let str=process.argv.slice(4);
+    const newTodos = new Todos();
+    newTodos.removeTodos(str);
 }
 else {
     console.log(`Parancssori Todo applikáció
