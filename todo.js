@@ -8,7 +8,7 @@ export class Todo {
     todo = "";
     arranged;
 
-    constructor(todo,arranged=false) {
+    constructor(todo, arranged = false) {
         this.todo = String(todo);
         this.arranged = arranged;
     }

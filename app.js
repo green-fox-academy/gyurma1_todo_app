@@ -29,9 +29,14 @@ if (args.includes('-l')) {
     //töröl egy elemet
 } else if (args.includes('-r')) {
     let str = process.argv.slice(3);
+    
     if (str.length == 0) {
         console.error('Nem lehetséges az eltávolítás:nem adott meg indexet.')
-    } else {
+    } else if (isNaN(str[0])) {
+
+        console.error('Nem lehetséges az eltávolítás:a megadott index nem szám.')
+    }
+    else {
         const newTodos = new Todos();
         newTodos.removeTodos(str);
     }

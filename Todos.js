@@ -78,19 +78,19 @@ export class Todos {
                 const databases = JSON.parse(data);
                 if (num[0] > databases.length) {
                     console.error('Nem lehetséges az eltávolítás:túlindexelés miatt.');
-                } else{
+                } else {
                     // delete a record;
                     databases.splice(newNum, 1);
 
-                // write new data back to the file
-                fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
-                    if (err) {
-                        console.log(`Error writing file: ${err}`);
-                    } else {
-                        console.log(`Az ${num}számú elem törölve lett.`)
-                    }
-                });
-            }
+                    // write new data back to the file
+                    fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
+                        if (err) {
+                            console.log(`Error writing file: ${err}`);
+                        } else {
+                            console.log(`Az ${num}számú elem törölve lett.`)
+                        }
+                    });
+                }
             }
 
         });
