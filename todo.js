@@ -1,14 +1,20 @@
 'use strict'
-import fs from 'fs';
-import minimist from 'minimist';
-import { stringify } from 'querystring';
+// import fs from 'fs';
+// import minimist from 'minimist';
+// import { stringify } from 'querystring';
 
 
-export class Todo{
-todo="";
-constructor(todo){
-this.todo=String(todo);
+export class Todo {
+    todo = "";
+    arranged;
 
-}
+    constructor(todo,arranged=false) {
+        this.todo = String(todo);
+        this.arranged = arranged;
+    }
+
+    setArranged() {
+        this.arranged = true;
+    }
 
 }

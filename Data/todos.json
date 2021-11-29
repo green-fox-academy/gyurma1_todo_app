@@ -1,14 +1,10 @@
 [
     {
-        "todo": "Tejet venni"
+        "todo": "todo,arranged",
+        "arranged": true
     },
     {
-        "todo": "Kutyát sétáltatni"
-    },
-    {
-        "todo": "Kutyát sétáltatni"
-    },
-    {
-        "todo": "Kutyát sétáltatni"
+        "todo": "todo,arranged",
+        "arranged": true
     }
 ]

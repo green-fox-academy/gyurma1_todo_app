@@ -65,6 +65,8 @@ export class Todos {
         });
     }
     removeTodos(num) {
+        let newNum=num[0];
+        newNum--;
         // read the file
         fs.readFile('./Data/todos.json', 'utf8', (err, data) => {
 
@@ -76,8 +78,8 @@ export class Todos {
                 const databases = JSON.parse(data);
 
                 // delete a record;
-                databases.splice(num,1);
-                console.log(databases);
+                databases.splice(newNum,1);
+                
                 // write new data back to the file
                 fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
                     if (err) {
@@ -90,6 +92,40 @@ export class Todos {
 
         });
     }
+arrangedTodos(num){
+    let newNum=num[0];
+        newNum--;
+    // read the file
+    fs.readFile('./Data/todos.json', 'utf8', (err, data) => {
 
+        if (err) {
+            console.log(`Error reading file from disk: ${err}`);
+        } else {
+
+            // parse JSON string to JSON object
+            const databases = JSON.parse(data);
+            const todoArray=[];
+            for (let i = 0; i < databases.length; i++) {
+                const obj=databases[i];
+                const newTodo= new Todo(obj.todo,obj.arranged);
+                todoArray.push(newTodo);
+            }
+
+            // set arranged;
+            
+           todoArray[newNum].setArranged();
+            
+            // write new data back to the file
+            fs.writeFile('./Data/todos.json', JSON.stringify(todoArray, null, 4), (err) => {
+                if (err) {
+                    console.log(`Error writing file: ${err}`);
+                } else {
+                    console.log(`Az ${num}számú elem elintézve :).`)
+                }
+            });
+        }
+
+    });
+}
 
 }

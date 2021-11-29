@@ -3,8 +3,9 @@ import { Todos } from "./Todos.js";
 
 
 const args = process.argv.slice(2);
-//console.log(process.argv);
-//console.log(args);
+
+// console.log(process.argv,'argv');
+// console.log(args,'args');
 
 
 if (args.includes('-l')) {
@@ -25,11 +26,18 @@ if (args.includes('-l')) {
         newTodos.addTodos(newTodo);
     }
     
-    
+    //töröl egy elemet
 }else if (args.includes('-r')) {
-    let str=process.argv.slice(4);
+    let str=process.argv.slice(3);
+    
     const newTodos = new Todos();
     newTodos.removeTodos(str);
+}else if (args.includes('-c')) {
+    //teljesít egy feladatot
+    let str=process.argv.slice(3);
+    
+    const newTodos = new Todos();
+    newTodos.arrangedTodos(str);
 }
 else {
     console.log(`Parancssori Todo applikáció
