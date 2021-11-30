@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { Todo } from './Todo.js';
 export class Todos {
-    
+
     constructor() {
 
     }
@@ -25,14 +25,14 @@ export class Todos {
                         todoArray.push(newTodo);
                     }
 
-                    
+
                     let numb = 0;
                     for (let i = 0; i < todoArray.length; i++) {
                         if (todoArray.length == 0) {
                             console.log('Nincs mára tennivaló.')
                         }
                         numb++;
-                        console.log(`${numb} - [${todoArray[i].arranged==true? 'x':''}] ${todoArray[i].todo}` );
+                        console.log(`${numb} - [${todoArray[i].arranged == true ? 'x' : ''}] ${todoArray[i].todo}`);
 
                     }
                 }
@@ -56,14 +56,14 @@ export class Todos {
             } else {
 
                 // parse JSON string to JSON object
-                const databases=[];
-                if (data=='') {
+                const databases = [];
+                if (data == '') {
                     databases.push(todoObj);
-                }else{
-                 databases = JSON.parse(data);
+                } else {
+                    databases = JSON.parse(data);
 
-                // add a new record
-                databases.push(todoObj);
+                    // add a new record
+                    databases.push(todoObj);
                 }
                 // write new data back to the file
                 fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
@@ -121,32 +121,32 @@ export class Todos {
 
                 // parse JSON string to JSON object
                 const databases = JSON.parse(data);
-                if (num[0]> databases.length) {
+                if (num[0] > databases.length) {
                     console.error('Nem lehetséges a feladat végrehajtása:túlindexelési probléma adódott!')
-                }else if (isNaN(num[0])) {
+                } else if (isNaN(num[0])) {
                     console.error('Nem lehetséges a feladat végrehajtása: a megadott index nem szám.');
                 }
-                else{
-                const todoArray = [];
-                for (let i = 0; i < databases.length; i++) {
-                    const obj = databases[i];
-                    const newTodo = new Todo(obj.todo, obj.arranged);
-                    todoArray.push(newTodo);
-                }
-
-                // set arranged;
-
-                todoArray[newNum].setArranged();
-
-                // write new data back to the file
-                fs.writeFile('./Data/todos.json', JSON.stringify(todoArray, null, 4), (err) => {
-                    if (err) {
-                        console.log(`Error writing file: ${err}`);
-                    } else {
-                        console.log(`Az ${num}számú elem elintézve :).`)
+                else {
+                    const todoArray = [];
+                    for (let i = 0; i < databases.length; i++) {
+                        const obj = databases[i];
+                        const newTodo = new Todo(obj.todo, obj.arranged);
+                        todoArray.push(newTodo);
                     }
-                });
-            }
+
+                    // set arranged;
+
+                    todoArray[newNum].setArranged();
+
+                    // write new data back to the file
+                    fs.writeFile('./Data/todos.json', JSON.stringify(todoArray, null, 4), (err) => {
+                        if (err) {
+                            console.log(`Error writing file: ${err}`);
+                        } else {
+                            console.log(`Az ${num}számú elem elintézve :).`)
+                        }
+                    });
+                }
             }
 
         });
