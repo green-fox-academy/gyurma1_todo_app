@@ -21,11 +21,7 @@ else {
     if (args.includes('-l')) {
         const newTodos = new Todos();
         newTodos.readTodos();
-        // console.log('listing');
-        // console.log(args[1]);
-        //file beolv
-        //json parsolas--rawtodolist
-        //rawtodolist---todolist=[Todo{},Todo{}]
+
     } else if (args.includes('-a')) {
         const newTodos = new Todos();
         let str = process.argv.slice(3);
@@ -53,9 +49,12 @@ else {
     } else if (args.includes('-c')) {
         //teljesít egy feladatot
         let str = process.argv.slice(3);
-
-        const newTodos = new Todos();
-        newTodos.arrangedTodos(str);
+        if (str.length == 0) {
+            console.log('Nem lehetséges a feladat végrehajtása:nem adtál meg indexet.')
+        } else {
+            const newTodos = new Todos();
+            newTodos.arrangedTodos(str);
+        }
     }
     else {
         console.log(`Parancssori Todo applikáció

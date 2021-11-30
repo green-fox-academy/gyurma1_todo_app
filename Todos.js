@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { Todo } from './Todo.js';
 export class Todos {
-    #arrTodos = [];
+    
     constructor() {
 
     }
@@ -16,14 +16,23 @@ export class Todos {
                 if (data == '') {
                     console.log('Nincs mára tennivalód! :)')
                 } else {
-                    this.#arrTodos = JSON.parse(data);
+                    const arr = JSON.parse(data);
+                    const todoArray = [];
+
+                    for (let i = 0; i < arr.length; i++) {
+                        const obj = arr[i];
+                        const newTodo = new Todo(obj.todo, obj.arranged);
+                        todoArray.push(newTodo);
+                    }
+
+                    
                     let numb = 0;
-                    for (let i = 0; i < this.#arrTodos.length; i++) {
-                        if (this.#arrTodos.length == 0) {
+                    for (let i = 0; i < todoArray.length; i++) {
+                        if (todoArray.length == 0) {
                             console.log('Nincs mára tennivaló.')
                         }
                         numb++;
-                        console.log(`${numb} -`, String(Object.values(this.#arrTodos[i])));
+                        console.log(`${numb} - [${todoArray[i].arranged==true? 'x':''}] ${todoArray[i].todo}` );
 
                     }
                 }
@@ -47,11 +56,15 @@ export class Todos {
             } else {
 
                 // parse JSON string to JSON object
-                const databases = JSON.parse(data);
+                const databases=[];
+                if (data=='') {
+                    databases.push(todoObj);
+                }else{
+                 databases = JSON.parse(data);
 
                 // add a new record
                 databases.push(todoObj);
-
+                }
                 // write new data back to the file
                 fs.writeFile('./Data/todos.json', JSON.stringify(databases, null, 4), (err) => {
                     if (err) {
@@ -108,6 +121,12 @@ export class Todos {
 
                 // parse JSON string to JSON object
                 const databases = JSON.parse(data);
+                if (num[0]> databases.length) {
+                    console.error('Nem lehetséges a feladat végrehajtása:túlindexelési probléma adódott!')
+                }else if (isNaN(num[0])) {
+                    console.error('Nem lehetséges a feladat végrehajtása: a megadott index nem szám.');
+                }
+                else{
                 const todoArray = [];
                 for (let i = 0; i < databases.length; i++) {
                     const obj = databases[i];
@@ -127,6 +146,7 @@ export class Todos {
                         console.log(`Az ${num}számú elem elintézve :).`)
                     }
                 });
+            }
             }
 
         });
